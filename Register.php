@@ -6,9 +6,7 @@
  }
  include_once 'dbconnect.php';
 
-
-
-  
+ $error = false;
 
  if ( isset($_POST['btn-signup']) ) {
   
@@ -37,21 +35,21 @@
    $nameError = "Name must contain alphabets and space.";
   }
   
-  //basic email validation
+  //Einfache E-Mail Überprüfung
   if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
    $error = true;
    $emailError = "Bitte gebe eine gültige Email Adresse an.";
   } else {
-   // check email exist or not
-   $query = "SELECT userEmail FROM users WHERE userEmail='$email'";
-   $result = mysqli_query($query);
-   $count = mysql_num_rows($result);
+   // Check ob E-Mail schon vergeben
+   $query = "SELECT userEmail FROM user WHERE userEmail='$email'";
+   $result = mysqli_query($conn, $query);
+   $count = mysqli_num_rows($result);
    if($count!=0){
     $error = true;
     $emailError = "Diese Email Adresse wird schon benutzt";
    }
   }
-  // password validation
+  // Passwort Kriterien prüfen
   if (empty($pass)){
    $error = true;
    $passError = "Passwort eingeben";
@@ -60,24 +58,24 @@
    $passError = "Passwort benötigt mindestens 3 Buchstaben";
   }
   
-  // password encrypt using SHA256();
+  // Passwort Verschlüsselung mit using SHA256();
   $password = hash('sha256', $pass);
   
-  // if there's no error, continue to signup
+  // WEnn kein Error dann kommt hier die Registrierung 
   if( !$error ) {
    
-   $query = "INSERT INTO users(userName,userEmail,userPass) VALUES('$name','$email','$password')";
-   $res = mysqli_query($query);
+   $query = "INSERT INTO user(userName,userEmail,userPass) VALUES('$name','$email','$password')";
+   $res = mysqli_query($conn, $query);
     
    if ($res) {
     $errTyp = "success";
-    $errMSG = "Fertig. Du kannst dich jetzt einloggen";
+    $errMSG = "Successfully registered, you may login now";
     unset($name);
     unset($email);
     unset($pass);
    } else {
     $errTyp = "danger";
-    $errMSG = "Versuchen Sie es bitte später noch einmal"; 
+    $errMSG = "Something went wrong, try again later..."; 
    } 
     
   }
@@ -126,24 +124,24 @@
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-             <input type="name" name="name" class="form-control" placeholder="Name" maxlength="50"  />
-                </div>
+             <input type="text" name="name" class="form-control" placeholder="Name" maxlength="50" />
                 
+            </div>
             
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
              <input type="email" name="email" class="form-control" placeholder="Email Adresse" maxlength="40"  />
-                </div>
-                
+             
+            </div>
             
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
              <input type="password" name="pass" class="form-control" placeholder="Passwort" maxlength="15" />
-                </div>
-                
-                        
+               
+            </div>    
+      
             <div class="form-group">
              <hr />
             </div>

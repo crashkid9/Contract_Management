@@ -41,8 +41,8 @@
    
    $password = hash('sha256', $pass); // SHA256 Passwort Verschlüsselung
   
-   $res=mysql_query("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
-   $row=mysql_fetch_array($res);
+   $res=mysqli_query("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
+   $row=mysqli_fetch_array($conn, $res);
    $count = mysql_num_rows($res); 
    
    if( $count == 1 && $row['userPass']==$password ) {
@@ -55,8 +55,8 @@
    
    $password = hash('sha256', $pass); // password hashing using SHA256
   
-   $res=mysql_query("SELECT userId, userName, userPass FROM admin WHERE userEmail='$email'");
-   $row=mysql_fetch_array($res);
+   $res=mysqli_query("SELECT userId, userName, userPass FROM admin WHERE userEmail='$email'");
+   $row=mysqli_fetch_array($conn, $res);
    $count = mysql_num_rows($res); // if uname/pass correct it returns must be 1 row
    
       
@@ -79,7 +79,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Fom Webshob</title>
+<title>Contract_Management</title>
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -116,17 +116,15 @@
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-             <input type="email" name="email" class="form-control" placeholder="Email Adresse" value="<?php echo $email; ?>" maxlength="40" />
-                </div>
-                <span class="text-danger"><?php echo $emailError; ?></span>
+             <input type="email" name="email" class="form-control" placeholder="Email Adresse"  maxlength="40" />
+              
             </div>
             
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
              <input type="password" name="pass" class="form-control" placeholder="Passwort" maxlength="15" />
-                </div>
-                <span class="text-danger"><?php echo $passError; ?></span>
+               
             </div>
             
             <div class="form-group">

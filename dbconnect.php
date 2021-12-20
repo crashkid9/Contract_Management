@@ -7,12 +7,14 @@
  define('DBPASS', '');
  define('DBNAME', 'conma');
  
- $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
+ $conn = new mysqli(DBHOST,DBUSER,DBPASS, DBNAME);
+ 
 
  if ( !$conn ) {
   die("Connection failed : " . mysql_error());
  }
  
+
 
 
 

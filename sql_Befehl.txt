@@ -1,0 +1,12 @@
+Befehle zum Erstellen der SQL Tabellen:
+
+User Tabelle:
+
+CREATE TABLE `user` ( `userId` int(11) NOT NULL AUTO_INCREMENT PRIMARY key,
+ `userName` varchar(30) NOT NULL,
+ `userEmail` varchar(60) NOT NULL, 
+ `userPass` varchar(255) NOT NULL )
+  ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+
+
+----------------------------------------------------------------------------------
