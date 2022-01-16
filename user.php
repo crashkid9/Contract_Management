@@ -1,20 +1,23 @@
 <?php
 session_start();
+
 ?>
 
 <html>
 <body>
-<h3>Contract Management zur Verwaltung von Mobilfunkverträgen</h3> <li>   <a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Ausloggen</a></li>
+<h3>Contract Management zur Verwaltung von Mobilfunkverträgen</h3> 
+<li> <a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Ausloggen</a></li>
+<li> <a href="entry.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Vertrag anlegen</a></li>
 
 <?php
+include_once 'dbconnect.php';
 echo "<h1> Hallo {$_SESSION['user']} </h1>";
 echo "</br>";
 echo "</br>";
 
 
-$con = mysqli_connect("","root"); 
-mysqli_select_db($con, "conma"); 
-$res = mysqli_query($con, "SELECT * FROM vertraege");
+mysqli_select_db($conn, "conma"); 
+$res = mysqli_query($conn, "SELECT * FROM vertraege");
 
 
 // Tabellenbeginn
@@ -49,7 +52,7 @@ $z = $z +1;
 
 
 // Buttons und Links
-echo "</table>"; mysqli_close($con); 
+echo "</table>"; mysqli_close($conn); 
 ?>
 
 
