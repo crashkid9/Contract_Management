@@ -49,9 +49,7 @@
     $_SESSION['user'] = $row['user'];
     header("Location: user.php"); //User Page
    } 
-   
-   
-   
+    
   
  }
     

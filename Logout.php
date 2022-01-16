@@ -4,7 +4,7 @@
  session_start();
  
   $con = mysqli_connect("","root"); 
-$db = mysqli_select_db($con, "shop"); 
+$db = mysqli_select_db($con, "conma"); 
 
 mysqli_query($con, "delete from warenkorb");
  
