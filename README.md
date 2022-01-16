@@ -2,7 +2,7 @@
 Software zum Verwalten von Handyverträgen (Beta)
 
 
-Die Software ist noch bei weitem nicht fertig und enhält aktuell nur ein Login Formular. 
+Die Software ist noch nicht für den produktiven Betrieb geeignet. 
 
 Bitte vorher folgende SQL Tabellen erstellen:
 
