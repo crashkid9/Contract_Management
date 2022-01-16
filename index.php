@@ -5,15 +5,15 @@
  
  // it will never let you open index(login) page if session is set
  if ( isset($_SESSION['user']) !="" ) {
-  header("Location: home.php");
+  header("Location: index.php");
   exit;
  }
 
  $error = false;
  
- if( isset($_POST['btn-login']) ) { // Login in den Webshopt
+ if( isset($_POST['btn-login']) ) { // Login Button
   
-  // Login Daten nach verschiednenen Kreterien überprüfen
+  // Login Daten nach verschiednenen Kriterien überprüfen
   $email = trim($_POST['email']);
   $email = strip_tags($email);
   $email = htmlspecialchars($email);
@@ -21,7 +21,8 @@
   $pass = trim($_POST['pass']);
   $pass = strip_tags($pass);
   $pass = htmlspecialchars($pass);
-	//Mahßnamen gegen eine SQL Injection
+  
+  //Mahßnamen gegen eine SQL Injection
   
   if(empty($email)){
    $error = true;
@@ -57,6 +58,7 @@
  
  //Login Formular
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,18 +84,14 @@
              <hr />
             </div>
             
-            <?php
-   if ( isset($errMSG) ) {
-    
-    ?>
-    <div class="form-group">
+
+
+             <div class="form-group">
              <div class="alert alert-danger">
-    <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
+            <span class="glyphicon glyphicon-info-sign"></span> 
                 </div>
              </div>
-                <?php
-   }
-   ?>
+     
             
             <div class="form-group">
              <div class="input-group">
@@ -134,4 +132,3 @@
 
 </body>
 </html>
-<?php ob_end_flush(); ?>
