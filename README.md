@@ -16,3 +16,14 @@ CREATE TABLE `user` ( `userId` int(11) NOT NULL AUTO_INCREMENT PRIMARY key,
  `userEmail` varchar(60) NOT NULL, 
  `userPass` varchar(255) NOT NULL )
   ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+
+
+
+------------------------------------------------------
+
+CREATE TABLE `vertraege` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT PRIMARY key,
+  `Mobilfunknummer` int(255) NOT NULL,
+  `SIMNummer` int(255) NOT NULL,
+  `Beschreibung` char(255) NOT NULL)
+  ENGINE=InnoDB DEFAULT CHARSET=latin1;
