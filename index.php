@@ -41,33 +41,17 @@
    
    $password = hash('sha256', $pass); // SHA256 Passwort Verschlüsselung
   
-   $res=mysqli_query("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
-   $row=mysqli_fetch_array($conn, $res);
-   $count = mysql_num_rows($res); 
+   $res=mysqli_query($conn, "SELECT userName, userEmail, userPass FROM user WHERE userEmail='$email'");
+   $row=mysqli_fetch_array($res);
+   $count = mysqli_num_rows($res); 
    
    if( $count == 1 && $row['userPass']==$password ) {
-    $_SESSION['user'] = $row['userName'];
+    $_SESSION['user'] = $row['user'];
     header("Location: user.php"); //User Page
    } 
    
    
-   else{ //Login prüfen auf Admin auf einer anderen Datenbank 
    
-   $password = hash('sha256', $pass); // password hashing using SHA256
-  
-   $res=mysqli_query("SELECT userId, userName, userPass FROM admin WHERE userEmail='$email'");
-   $row=mysqli_fetch_array($conn, $res);
-   $count = mysql_num_rows($res); // if uname/pass correct it returns must be 1 row
-   
-      
-   if( $count == 1 && $row['userPass']==$password ) {
-    $_SESSION['user'] = $row['userId'];
-    header("Location: admin.php"); //Admin Page
-   } else {
-    $errMSG = "User nicht gefunden";
-   }
-    
-  }
   
  }
     
